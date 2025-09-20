@@ -29,7 +29,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_INITDIALOG:		//Эта секция выполняется один раз, нужна для добавления элементов в окно диалога.
 	{
 		HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);
-		SetFocus(hEditLogin);
+		//SetFocus(hEditLogin);
 		HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 		SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 	}
