@@ -1,10 +1,15 @@
 ﻿https://github.com/okovtun/SPU_411_WIN.git
 https://www.youtube.com/playlist?list=PLeqyOOqxeiINeepT95yLbp8dS24fsqALV
 
-Book:
-	Jeffrey Richter - Windows via C/C++ pdf
+Book:	Jeffrey Richter - Windows via C/C++ pdf
 
 TODO:
+1. При запуске программы ее окно должно оторажаться строго по центру экрана,
+   и занимать 75% экрана, независимо от разрешения;
+2. В проекте 'MainWindow' в строке заголовка должны отображаться размер окна, 
+   и его положение на экране;
+
+DONE:
 1. Добить 5-й и 6-й пункты из предыдущего задания;
 2. В Solution 'WinAPI' добавить проект 'Report', и в этом проекте написать генератор отзывов,
    в который можно вписать Ф.И.О. студента, при помощи Галочек (CheckBox) выбрать 
