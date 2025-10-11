@@ -1,4 +1,7 @@
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include<Windows.h>
+#include<stdio.h>	//Р¤СѓРЅРєС†РёРё РЅР°РїРёСЃР°РЅС‹ РЅР° СЏР·С‹РєРµ 'C'
+//#include<СЃstdio>	//Р¤СѓРЅРєС†РёРё РЅР°РїРёСЃР°РЅС‹ РЅР° СЏР·С‹РєРµ 'C++'
 #include"resource.h"
 
 CONST CHAR g_sz_WND_CLASS_NAME[] = "My Windows Class";
@@ -7,8 +10,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
 {
-	//1) Регистрация класса окна:
-	WNDCLASSEX wClass;	//Структура, описывающая класс окна
+	//1) Р РµРіРёСЃС‚СЂР°С†РёСЏ РєР»Р°СЃСЃР° РѕРєРЅР°:
+	WNDCLASSEX wClass;	//РЎС‚СЂСѓРєС‚СѓСЂР°, РѕРїРёСЃС‹РІР°СЋС‰Р°СЏ РєР»Р°СЃСЃ РѕРєРЅР°
 	ZeroMemory(&wClass, sizeof(wClass));
 
 	wClass.style = 0;
@@ -35,7 +38,18 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		return 0;
 	}
 
-	//2) Создание окна:
+	//2) РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°:
+
+	//https://stackoverflow.com/questions/4631292/how-to-detect-the-current-screen-resolution
+	//https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmetrics
+	INT screen_width = GetSystemMetrics(SM_CXSCREEN);
+	INT screen_height = GetSystemMetrics(SM_CYSCREEN);
+
+	INT window_width = screen_width / 4 * 3;
+	INT window_height = screen_height * .75;
+
+	INT window_start_x = screen_width / 8;
+	INT window_start_y = screen_height / 8;
 
 	HWND hwnd = CreateWindowEx
 	(
@@ -43,8 +57,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		g_sz_WND_CLASS_NAME,	//Class name
 		g_sz_WND_CLASS_NAME,	//Winodw title
 		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT,	//Window position
-		CW_USEDEFAULT, CW_USEDEFAULT,	//Window size
+		window_start_x, window_start_y,	//Window position
+		window_width, window_height,	//Window size
 		NULL,
 		NULL,
 		hInstance,
@@ -58,7 +72,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	ShowWindow(hwnd, nCmdShow);
 	UpdateWindow(hwnd);
 
-	//3) Запуск цикла сообщений:
+	//3) Р—Р°РїСѓСЃРє С†РёРєР»Р° СЃРѕРѕР±С‰РµРЅРёР№:
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0) > 0)
 	{
@@ -79,7 +93,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		(
 			NULL,
 			"Static",
-			"Этот Static-text создан при помощи функции CreateWindowEx();",
+			"Р­С‚РѕС‚ Static-text СЃРѕР·РґР°РЅ РїСЂРё РїРѕРјРѕС‰Рё С„СѓРЅРєС†РёРё CreateWindowEx();",
 			WS_CHILD | WS_VISIBLE,
 			10, 10,
 			500, 25,
@@ -107,7 +121,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		(
 			NULL,
 			"Button",
-			"Применить",
+			"РџСЂРёРјРµРЅРёС‚СЊ",
 			WS_CHILD | WS_VISIBLE,
 			430, 70,
 			80, 32,
@@ -116,15 +130,32 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
-		//WS_CHILD - показывает, что создаваемое окно является дочерним элементом интерфейса какого-то другого окна
+		//WS_CHILD - РїРѕРєР°Р·С‹РІР°РµС‚, С‡С‚Рѕ СЃРѕР·РґР°РІР°РµРјРѕРµ РѕРєРЅРѕ СЏРІР»СЏРµС‚СЃСЏ РґРѕС‡РµСЂРЅРёРј СЌР»РµРјРµРЅС‚РѕРј РёРЅС‚РµСЂС„РµР№СЃР° РєР°РєРѕРіРѕ-С‚Рѕ РґСЂСѓРіРѕРіРѕ РѕРєРЅР°
 	}
 	break;
+	case WM_SIZE:
+	case WM_MOVE:
+	{
+		RECT wnd_rect;
+		GetWindowRect(hwnd, &wnd_rect);
+		CHAR sz_title[256] = {};
+		sprintf
+		(
+			sz_title, "%s Position: %ix%i, Size:%ix%i", 
+			g_sz_WND_CLASS_NAME, 
+			wnd_rect.left, wnd_rect.top,
+			wnd_rect.right-wnd_rect.left,
+			wnd_rect.bottom - wnd_rect.top
+		);
+		SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)sz_title);
+	}
+		break;
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{
 		case 1002:
 		{
-			MessageBox(hwnd, "Привет", "Привет", MB_OK | MB_ICONINFORMATION);
+			MessageBox(hwnd, "РџСЂРёРІРµС‚", "РџСЂРёРІРµС‚", MB_OK | MB_ICONINFORMATION);
 			CONST INT SIZE = 256;
 			CHAR sz_buffer[SIZE] = {};
 			HWND hStatic = GetDlgItem(hwnd, 1000);
@@ -139,14 +170,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_DESTROY:
-		MessageBox(NULL, "Лучше двери закройте...", "Finita la comedia", MB_OK | MB_ICONERROR);
+		MessageBox(NULL, "Р›СѓС‡С€Рµ РґРІРµСЂРё Р·Р°РєСЂРѕР№С‚Рµ...", "Finita la comedia", MB_OK | MB_ICONERROR);
 		PostQuitMessage(0);
 		break;
 	case WM_CLOSE:
 		//DestroyWindow(hwnd);
-		if (MessageBox(hwnd, "Вы действительно хотите закрыть окно?", "Че, внатуре?", MB_YESNO | MB_ICONQUESTION) == IDYES)
+		if (MessageBox(hwnd, "Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ Р·Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ?", "Р§Рµ, РІРЅР°С‚СѓСЂРµ?", MB_YESNO | MB_ICONQUESTION) == IDYES)
 			SendMessage(hwnd, WM_DESTROY, 0, 0);
-		//Гатова
+		//Р“Р°С‚РѕРІР°
 		break;
 	default:	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 	}
