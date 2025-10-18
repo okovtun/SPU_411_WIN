@@ -4,6 +4,19 @@ https://www.youtube.com/playlist?list=PLeqyOOqxeiINeepT95yLbp8dS24fsqALV
 Book:	Jeffrey Richter - Windows via C/C++ pdf
 
 TODO:
+1. Нарисовать граф состояний Калькулятора (Теория автоматов);
+2. Создать ветку 'KeyboardHW';
+3. Обеспечить ввод цифр (WM_KEYDOWN);
+4. На кнопки загрузить иконки:
+	https://learn.microsoft.com/en-us/windows/win32/controls/buttons
+5. 
+
+DONE:
+0. Сделать COMMIT и создать ветку 'CalculationsHW';
+1. При нажатии на цифры, они должны появляться на экране калькулятора;
+2. Реализовать вычисления;
+
+DONE:
 1. При запуске программы ее окно должно оторажаться строго по центру экрана,	DONE
    и занимать 75% экрана, независимо от разрешения;
 2. В проекте 'MainWindow' в строке заголовка должны отображаться размер окна, 
