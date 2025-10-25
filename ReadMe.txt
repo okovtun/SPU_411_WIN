@@ -4,6 +4,13 @@ https://www.youtube.com/playlist?list=PLeqyOOqxeiINeepT95yLbp8dS24fsqALV
 Book:	Jeffrey Richter - Windows via C/C++ pdf
 
 TODO:
+1. Добавить контекстное меню, через которое можно переулючать темы;
+2. Вынести темы "square_blue" и "metal_mistral" в DLL-файлы (Resource-only DLL);
+3. На экран калькулятора прикрутить кастомный шрифт:
+	https://www.1001fonts.com/digital-fonts.html?page=2
+4. Добавить кастомные шрифты в контекстное меню;
+
+DONE:
 1. Нарисовать граф состояний Калькулятора (Теория автоматов);
 2. Создать ветку 'KeyboardHW';
 3. Обеспечить ввод цифр (WM_KEYDOWN);
