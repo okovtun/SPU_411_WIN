@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ASCII", "ASCII\ASCII.vcxproj", "{0F0FBA9E-FB9F-413E-ADDB-7BFDA882422E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceOnlyDLL", "ResourceOnlyDLL\ResourceOnlyDLL.vcxproj", "{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,16 @@ Global
 		{0F0FBA9E-FB9F-413E-ADDB-7BFDA882422E}.Release|x64.Build.0 = Release|x64
 		{0F0FBA9E-FB9F-413E-ADDB-7BFDA882422E}.Release|x86.ActiveCfg = Release|Win32
 		{0F0FBA9E-FB9F-413E-ADDB-7BFDA882422E}.Release|x86.Build.0 = Release|Win32
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Debug|x64.ActiveCfg = Debug|x64
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Debug|x64.Build.0 = Debug|x64
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Debug|x86.ActiveCfg = Debug|Win32
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Debug|x86.Build.0 = Debug|Win32
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Release|Any CPU.ActiveCfg = Release|Win32
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Release|x64.ActiveCfg = Release|x64
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Release|x64.Build.0 = Release|x64
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Release|x86.ActiveCfg = Release|Win32
+		{687F8B2A-2D5C-4E85-B88C-2BED92D83C08}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

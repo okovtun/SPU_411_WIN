@@ -2,6 +2,7 @@
 #include<Windows.h>
 #include<float.h>
 #include<stdio.h>
+#include<iostream>
 #include"resource.h"
 
 //CONST INT SIZE = 256;
@@ -28,6 +29,7 @@ CONST INT g_i_OPERATIONS_START_X = g_i_BUTTON_START_X + (g_i_BUTTON_SIZE + g_i_I
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 VOID SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[]);
+VOID SetSkinDLL(HWND hwnd, CONST CHAR SZ_SKIN[]);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
 {
@@ -100,6 +102,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 	{
+		AllocConsole();
+		freopen("CONOUT$", "w", stdout);
 		HWND hEdit = CreateWindowEx
 		(
 			NULL, "Edit", "0",
@@ -215,7 +219,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
-		SetSkin(hwnd, "metal_mistral");
+		SetSkinDLL(hwnd, "square_blue");
 	}
 	break;
 	case WM_COMMAND:
@@ -426,4 +430,34 @@ VOID SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[])
 		);
 		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_0 + i), BM_SETIMAGE, 0, (LPARAM)hBitmap);
 	}
+}
+VOID Resource(VOID* res)
+{
+	std::cout << (CHAR*)res << std::endl;
+}
+VOID SetSkinDLL(HWND hwnd, CONST CHAR SZ_SKIN[])
+{
+	HMODULE hSkin = LoadLibrary(SZ_SKIN);
+	for (int i = IDC_BUTTON_0; i <= IDC_BUTTON_EQUAL; i++)
+	{
+		std::cout << i << "\t";
+		//CHAR sz_filename[FILENAME_MAX] = {};
+		//sprintf(sz_filename, "ButtonsBMP\\%s\\button_%i.bmp", SZ_SKIN, i);
+		HBITMAP hBitmap = (HBITMAP)LoadImage
+		(
+			hSkin,
+			MAKEINTRESOURCE(i),
+			IMAGE_BITMAP,
+			i > IDC_BUTTON_0 ? g_i_BUTTON_SIZE : g_i_BUTTON_DOUBLE_SIZE,
+			i == IDC_BUTTON_EQUAL ? g_i_BUTTON_DOUBLE_SIZE : g_i_BUTTON_SIZE,
+			LR_SHARED
+		);
+		//Resource(MAKEINTRESOURCE(i));
+		//CHAR sz_resource[256] = MAKEINTRESOURCE(i);
+		//std::cout << sz_resource << std::endl;
+		DWORD dwLastCode = GetLastError();
+		std::cout << dwLastCode << std::endl;
+		SendMessage(GetDlgItem(hwnd, i), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
+	}
+	//FreeLibrary(hSkin);
 }
