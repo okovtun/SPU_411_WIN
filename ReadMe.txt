@@ -3,7 +3,14 @@ https://www.youtube.com/playlist?list=PLeqyOOqxeiINeepT95yLbp8dS24fsqALV
 
 Book:	Jeffrey Richter - Windows via C/C++ pdf
 
+https://rustdesk.com/
+
 TODO:
+1. Упаковать калькулятор в установщик;
+2. Упаковать несколько шрифтов в DLL-файл, и обеспечить выбор шрифта через контекстное меню;
+	https://stackoverflow.com/questions/58712918/win32-use-a-resource-font-inside-the-application
+
+DONE:
 1. Добавить контекстное меню, через которое можно переулючать темы;
 2. Вынести темы "square_blue" и "metal_mistral" в DLL-файлы (Resource-only DLL);
 3. На экран калькулятора прикрутить кастомный шрифт:
