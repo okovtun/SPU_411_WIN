@@ -6,6 +6,23 @@ Book:	Jeffrey Richter - Windows via C/C++ pdf
 https://rustdesk.com/
 
 TODO:
+0. Сделать COMMIT и создать ветку 'Clock_HW_1';
+1. Обработать пункты меню 'Foreground color' и 'Background color';
+2. Часы всегда должны запускаться в правом верхнем углу, независимо от размера экрана;
+3. Реализовать пункт 'Choose font', который позволяет выбрать кастомный шрифт для отображения времени:
+	https://www.1001fonts.com/digital-fonts.html?page=2
+4. Если галочка 'Run on Windows startup' установлена, программа должна запускаться при старте системы;
+5. Все настройки программы должны сохраняться при выходе, и загружаться при старте программы:
+	Topmost;
+	Show date;
+	Show weekday;
+	Show controls;
+	Шрифт;
+	Цвета;
+	Состояние автозапуска;
+	Положение на экране;
+
+DONE:
 1. Упаковать калькулятор в установщик;
 2. Упаковать несколько шрифтов в DLL-файл, и обеспечить выбор шрифта через контекстное меню;
 	https://stackoverflow.com/questions/58712918/win32-use-a-resource-font-inside-the-application
