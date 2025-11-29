@@ -31,6 +31,7 @@ namespace Clock
 					50
 				);
 			tsmiTopmost.Checked = this.TopMost = true;
+			//AllocConsole();
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -46,6 +47,7 @@ namespace Clock
 			if (checkBoxShowWeekday.Checked)
 				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 			notifyIcon.Text = labelTime.Text;
+			Console.WriteLine(notifyIcon.Text);
 		}
 		void SetVisibility(bool visible)
 		{
