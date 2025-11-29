@@ -49,6 +49,7 @@
 			this.btnAdd.TabIndex = 1;
 			this.btnAdd.Text = "Добавить";
 			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// btnDelete
 			// 
@@ -68,7 +69,9 @@
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.lbAlarmList);
 			this.Name = "AlarmsForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "AlarmsForm";
+			this.Load += new System.EventHandler(this.AlarmsForm_Load);
 			this.ResumeLayout(false);
 
 		}

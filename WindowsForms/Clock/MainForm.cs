@@ -16,6 +16,7 @@ namespace Clock
 		ColorDialog backgroundDialog;
 		ColorDialog foregroundDialog;
 		ChooseFont fontDialog;
+		AlarmsForm alarms;
 		public MainForm()
 		{
 			InitializeComponent();
@@ -23,11 +24,13 @@ namespace Clock
 			backgroundDialog = new ColorDialog();
 			foregroundDialog = new ColorDialog();
 			fontDialog = new ChooseFont();
+			alarms = new AlarmsForm(this);
 			this.Location = new Point
 				(
 					Screen.PrimaryScreen.Bounds.Width - this.labelTime.Width - 150,
 					50
 				);
+			tsmiTopmost.Checked = this.TopMost = true;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -42,6 +45,7 @@ namespace Clock
 				labelTime.Text += $"\n{DateTime.Now.ToString("yyyy.MM.dd")}";//MM - Month
 			if (checkBoxShowWeekday.Checked)
 				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
+			notifyIcon.Text = labelTime.Text;
 		}
 		void SetVisibility(bool visible)
 		{
@@ -112,5 +116,9 @@ namespace Clock
 			bool console = (sender as ToolStripMenuItem).Checked ? AllocConsole() : FreeConsole();
 		}
 
+		private void tsmiAlarms_Click(object sender, EventArgs e)
+		{
+			alarms.ShowDialog();
+		}
 	}
 }

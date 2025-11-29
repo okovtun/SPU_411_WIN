@@ -31,6 +31,11 @@
 			this.cbUseDate = new System.Windows.Forms.CheckBox();
 			this.dtpDate = new System.Windows.Forms.DateTimePicker();
 			this.dtpTime = new System.Windows.Forms.DateTimePicker();
+			this.clbWeekDays = new System.Windows.Forms.CheckedListBox();
+			this.btnFile = new System.Windows.Forms.Button();
+			this.btnOK = new System.Windows.Forms.Button();
+			this.btnCancel = new System.Windows.Forms.Button();
+			this.lblFile = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// cbUseDate
@@ -43,6 +48,7 @@
 			this.cbUseDate.TabIndex = 0;
 			this.cbUseDate.Text = "На конкретную дату";
 			this.cbUseDate.UseVisualStyleBackColor = true;
+			this.cbUseDate.CheckedChanged += new System.EventHandler(this.cbUseDate_CheckedChanged);
 			// 
 			// dtpDate
 			// 
@@ -58,21 +64,89 @@
 			// 
 			this.dtpTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-			this.dtpTime.Location = new System.Drawing.Point(184, 49);
+			this.dtpTime.Location = new System.Drawing.Point(193, 49);
 			this.dtpTime.Name = "dtpTime";
+			this.dtpTime.ShowUpDown = true;
 			this.dtpTime.Size = new System.Drawing.Size(168, 31);
 			this.dtpTime.TabIndex = 2;
+			// 
+			// clbWeekDays
+			// 
+			this.clbWeekDays.CheckOnClick = true;
+			this.clbWeekDays.ColumnWidth = 48;
+			this.clbWeekDays.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.clbWeekDays.FormattingEnabled = true;
+			this.clbWeekDays.IntegralHeight = false;
+			this.clbWeekDays.Items.AddRange(new object[] {
+            "Пн",
+            "Вт",
+            "Ср",
+            "Чт",
+            "Пт",
+            "Сб",
+            "Вс"});
+			this.clbWeekDays.Location = new System.Drawing.Point(13, 86);
+			this.clbWeekDays.MultiColumn = true;
+			this.clbWeekDays.Name = "clbWeekDays";
+			this.clbWeekDays.Size = new System.Drawing.Size(348, 25);
+			this.clbWeekDays.TabIndex = 3;
+			// 
+			// btnFile
+			// 
+			this.btnFile.Location = new System.Drawing.Point(13, 206);
+			this.btnFile.Name = "btnFile";
+			this.btnFile.Size = new System.Drawing.Size(75, 23);
+			this.btnFile.TabIndex = 4;
+			this.btnFile.Text = "Обзор";
+			this.btnFile.UseVisualStyleBackColor = true;
+			this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
+			// 
+			// btnOK
+			// 
+			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.btnOK.Location = new System.Drawing.Point(205, 206);
+			this.btnOK.Name = "btnOK";
+			this.btnOK.Size = new System.Drawing.Size(75, 23);
+			this.btnOK.TabIndex = 5;
+			this.btnOK.Text = "OK";
+			this.btnOK.UseVisualStyleBackColor = true;
+			// 
+			// btnCancel
+			// 
+			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.btnCancel.Location = new System.Drawing.Point(286, 206);
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.Size = new System.Drawing.Size(75, 23);
+			this.btnCancel.TabIndex = 6;
+			this.btnCancel.Text = "Cancel";
+			this.btnCancel.UseVisualStyleBackColor = true;
+			// 
+			// lblFile
+			// 
+			this.lblFile.AutoSize = true;
+			this.lblFile.Location = new System.Drawing.Point(13, 118);
+			this.lblFile.Name = "lblFile";
+			this.lblFile.Size = new System.Drawing.Size(23, 13);
+			this.lblFile.TabIndex = 7;
+			this.lblFile.Text = "File";
 			// 
 			// AddAlarmForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(457, 277);
+			this.ClientSize = new System.Drawing.Size(374, 241);
+			this.Controls.Add(this.lblFile);
+			this.Controls.Add(this.btnCancel);
+			this.Controls.Add(this.btnOK);
+			this.Controls.Add(this.btnFile);
+			this.Controls.Add(this.clbWeekDays);
 			this.Controls.Add(this.dtpTime);
 			this.Controls.Add(this.dtpDate);
 			this.Controls.Add(this.cbUseDate);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "AddAlarmForm";
 			this.Text = "AddAlarmForm";
+			this.Load += new System.EventHandler(this.AddAlarmForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -83,5 +157,10 @@
 		private System.Windows.Forms.CheckBox cbUseDate;
 		private System.Windows.Forms.DateTimePicker dtpDate;
 		private System.Windows.Forms.DateTimePicker dtpTime;
+		private System.Windows.Forms.CheckedListBox clbWeekDays;
+		private System.Windows.Forms.Button btnFile;
+		private System.Windows.Forms.Button btnOK;
+		private System.Windows.Forms.Button btnCancel;
+		private System.Windows.Forms.Label lblFile;
 	}
 }
